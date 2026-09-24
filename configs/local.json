@@ -1,0 +1,8 @@
+{
+  "clusterId": "shardzero-local",
+  "peers": [
+    {"id": "node-1", "peerUrl": "http://127.0.0.1:8001", "clientUrl": "http://127.0.0.1:7001"},
+    {"id": "node-2", "peerUrl": "http://127.0.0.1:8002", "clientUrl": "http://127.0.0.1:7002"},
+    {"id": "node-3", "peerUrl": "http://127.0.0.1:8003", "clientUrl": "http://127.0.0.1:7003"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "seed": 728391,
+  "nodes": 3,
+  "operations": 80,
+  "maxDelayMs": 80,
+  "dropPercent": 8,
+  "duplicatePercent": 5,
+  "faults": [
+    { "atMs": 1000, "kind": "crash", "node": 0 },
+    { "atMs": 1400, "kind": "restart", "node": 0 },
+    { "atMs": 2460, "kind": "partition", "node": 1 },
+    { "atMs": 3060, "kind": "heal", "node": 0 },
+    { "atMs": 3500, "kind": "pause", "node": 2 },
+    { "atMs": 3800, "kind": "resume", "node": 2 },
+    { "atMs": 4400, "kind": "disk-after", "node": 0 },
+    { "atMs": 5000, "kind": "restart", "node": 0 }
+  ]
+}

@@ -1,0 +1,11 @@
+/data/
+/bin/
+/artifacts/
+/.gocache/
+/dashboard/node_modules/
+/dashboard/dist/
+coverage.out
+*.test
+*.exe
+desktop.ini
+docs/

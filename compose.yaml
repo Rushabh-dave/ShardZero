@@ -1,0 +1,41 @@
+services:
+  node-1:
+    build: .
+    command: ["--id=node-1", "--cluster=/app/cluster.json", "--listen=0.0.0.0:7001", "--peer-listen=0.0.0.0:8001", "--data=/data/node-1"]
+    ports:
+      - "127.0.0.1:7001:7001"
+    volumes:
+      - raft-node1-data:/data
+    healthcheck:
+      test: ["CMD", "/app/shardzero-client", "--server=http://127.0.0.1:7001", "STATUS"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    stop_grace_period: 15s
+  node-2:
+    build: .
+    command: ["--id=node-2", "--cluster=/app/cluster.json", "--listen=0.0.0.0:7002", "--peer-listen=0.0.0.0:8002", "--data=/data/node-2"]
+    ports: ["127.0.0.1:7002:7002"]
+    volumes: ["raft-node2-data:/data"]
+    healthcheck:
+      test: ["CMD", "/app/shardzero-client", "--server=http://127.0.0.1:7002", "STATUS"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    stop_grace_period: 15s
+  node-3:
+    build: .
+    command: ["--id=node-3", "--cluster=/app/cluster.json", "--listen=0.0.0.0:7003", "--peer-listen=0.0.0.0:8003", "--data=/data/node-3"]
+    ports: ["127.0.0.1:7003:7003"]
+    volumes: ["raft-node3-data:/data"]
+    healthcheck:
+      test: ["CMD", "/app/shardzero-client", "--server=http://127.0.0.1:7003", "STATUS"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    stop_grace_period: 15s
+
+volumes:
+  raft-node1-data:
+  raft-node2-data:
+  raft-node3-data:

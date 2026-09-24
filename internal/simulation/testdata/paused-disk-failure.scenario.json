@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "seed": 1,
+  "nodes": 3,
+  "operations": 12,
+  "maxDelayMs": 0,
+  "dropPercent": 0,
+  "duplicatePercent": 0,
+  "faults": [
+    { "atMs": 1100, "kind": "disk-before", "node": 0 },
+    { "atMs": 1300, "kind": "pause", "node": 0 }
+  ]
+}
