@@ -69,7 +69,11 @@ func newClusterConfigured(t testing.TB, count int, fixed bool, configure func(*C
 		peers = append(peers, Peer{ID: fmt.Sprint(i), PeerURL: fmt.Sprintf("http://localhost:%d", 8000+i), ClientURL: fmt.Sprintf("http://localhost:%d", 7000+i)})
 	}
 	for i := 0; i < count; i++ {
-		cfg := Config{ID: fmt.Sprint(i), ClusterID: "test", DataDir: t.TempDir(), Peers: peers, Heartbeat: 20 * time.Millisecond, ElectionMin: 200 * time.Millisecond, ElectionMax: 400 * time.Millisecond, RPCTimeout: 100 * time.Millisecond, RequestTimeout: 450 * time.Millisecond}
+		// Keep the default test cluster stable while a test sets up explicit
+		// partitions or inspects a node. Tests that need rapid elections still
+		// use eventually, while the longer request deadline avoids CI scheduling
+		// jitter being mistaken for a lost quorum.
+		cfg := Config{ID: fmt.Sprint(i), ClusterID: "test", DataDir: t.TempDir(), Peers: peers, Heartbeat: 20 * time.Millisecond, ElectionMin: 600 * time.Millisecond, ElectionMax: 1100 * time.Millisecond, RPCTimeout: 200 * time.Millisecond, RequestTimeout: 2 * time.Second}
 		if fixed {
 			cfg.FixedLeader = "0"
 		}
