@@ -213,6 +213,4 @@ ShardZero is a learning project, not a production service. It has static
 membership, no authentication, no TLS, no follower reads, no dynamic membership,
 and no cross-membership snapshot transfer. Keep it on trusted local networks.
 
-## License
 
-Built as a distributed-systems learning project by Rushabh Dave.
